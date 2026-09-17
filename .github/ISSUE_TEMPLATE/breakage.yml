@@ -1,0 +1,49 @@
+name: Broken page
+description: Report a site where Spades UX-Shield breaks legitimate functionality
+title: "[breakage] "
+labels:
+  - breakage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve Spades UX-Shield. **Do not** paste full URLs with query strings, tokens, or personal data.
+        The extension popup may pre-fill some fields when you use **Report broken page**.
+  - type: input
+    id: etld1
+    attributes:
+      label: Site (eTLD+1)
+      description: Registrable domain only (e.g. `shop.example.com` → `example.com`)
+      placeholder: example.com
+    validations:
+      required: true
+  - type: input
+    id: path_template
+    attributes:
+      label: Path template
+      description: Anonymized path (numeric segments as `:id`, no query/hash)
+      placeholder: /checkout/:id
+  - type: input
+    id: extension_version
+    attributes:
+      label: Extension version
+      placeholder: 1.0.0
+  - type: input
+    id: compiled_rev
+    attributes:
+      label: Compiled filter rev
+      description: From popup report or extension storage metadata
+  - type: textarea
+    id: rule_ids
+    attributes:
+      label: Matched rule IDs (FNV-1a)
+      description: Comma-separated rule hashes recorded for the tab
+      placeholder: 1234567890, 987654321
+  - type: textarea
+    id: notes
+    attributes:
+      label: What broke?
+      description: Checkout, login, scroll lock, payment, etc.
+      placeholder: Describe the broken behavior and steps to reproduce.
+    validations:
+      required: true
