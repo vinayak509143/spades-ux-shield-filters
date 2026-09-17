@@ -8,42 +8,32 @@ body:
     attributes:
       value: |
         Thanks for helping improve Spades UX-Shield. **Do not** paste full URLs with query strings, tokens, or personal data.
-        The extension popup may pre-fill some fields when you use **Report broken page**.
+        Fields below are pre-filled when you use **Report broken page** in the extension popup.
   - type: input
-    id: etld1
+    id: site
     attributes:
       label: Site (eTLD+1)
-      description: Registrable domain only (e.g. `shop.example.com` → `example.com`)
-      placeholder: example.com
+      description: Registrable domain (e.g. `www.shop.example.com` → `example.com`)
     validations:
       required: true
   - type: input
-    id: path_template
+    id: path
     attributes:
       label: Path template
-      description: Anonymized path (numeric segments as `:id`, no query/hash)
-      placeholder: /checkout/:id
+      description: Anonymized path only (no query string or hash; numeric segments as `:id`)
   - type: input
-    id: extension_version
+    id: version
     attributes:
       label: Extension version
-      placeholder: 1.0.0
-  - type: input
-    id: compiled_rev
-    attributes:
-      label: Compiled filter rev
-      description: From popup report or extension storage metadata
   - type: textarea
-    id: rule_ids
+    id: rules
     attributes:
       label: Matched rule IDs (FNV-1a)
       description: Comma-separated rule hashes recorded for the tab
-      placeholder: 1234567890, 987654321
   - type: textarea
-    id: notes
+    id: description
     attributes:
       label: What broke?
       description: Checkout, login, scroll lock, payment, etc.
-      placeholder: Describe the broken behavior and steps to reproduce.
     validations:
       required: true
