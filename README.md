@@ -24,3 +24,5 @@ Out of scope for this list: drip pricing, hard-to-cancel account mazes, and tric
 ## Licenses & Attribution
 
 Original community rules in `lists/base.txt` are this project’s work. Imported Fanboy/EasyList and AdGuard Annoyances cosmetics remain GPL-3.0 / CC BY-SA 3.0. See [ATTRIBUTION.md](ATTRIBUTION.md).
+
+Engine privacy policy: [PRIVACY.md](https://github.com/vinayak509143/spades-ux-shield/blob/main/PRIVACY.md). Support: [Ko-fi](https://ko-fi.com/spadesxx).
