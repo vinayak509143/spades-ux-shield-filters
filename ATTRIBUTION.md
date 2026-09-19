@@ -1,6 +1,6 @@
 # Attribution
 
-Spades UX-Shield’s **original community lists** in this repository (`lists/base.txt` and rules authored here) are original work. Packaged third-party cosmetics are **not**.
+Spades UX-Shield’s **original community lists** in this repository (`lists/darklist.txt` and rules authored here) are original work. Packaged third-party cosmetics are **not**.
 
 ## Upstream filter lists
 
@@ -33,6 +33,6 @@ The extract also **drops** generic (`##` with no host), HTML filters (`##^`), sn
 
 ## This list repo (not the extract)
 
-Original rules authored in `lists/base.txt` are intended to be licensed with this repository. **MIT (or any engine license) does not replace GPL/CC-BY-SA on imported third-party cosmetics.** Combined distributions that include the extract must honor upstream terms (attribution, share-alike / GPL as applicable).
+Original rules authored in `lists/darklist.txt` are intended to be licensed with this repository. **MIT (or any engine license) does not replace GPL/CC-BY-SA on imported third-party cosmetics.** Combined distributions that include the extract must honor upstream terms (attribution, share-alike / GPL as applicable).
 
 Engine source: [spades-ux-shield](https://github.com/vinayak509143/spades-ux-shield) — see that repo’s `ATTRIBUTION.md` and `CONTRIBUTING.md`.
