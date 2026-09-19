@@ -1,0 +1,53 @@
+name: Validate darklist
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'lists/darklist.txt'
+  pull_request:
+    paths:
+      - 'lists/darklist.txt'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: filters
+          fetch-depth: 0
+
+      - uses: actions/checkout@v4
+        with:
+          repository: vinayak509143/spades-ux-shield
+          path: engine
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install engine deps
+        working-directory: engine
+        run: npm ci
+
+      - name: Parse and policy-check darklist
+        working-directory: engine
+        run: node scripts/validate-darklist.mjs ../filters/lists/darklist.txt
+
+      - name: Version must increase on PR
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C filters fetch origin "${{ github.base_ref }}" --depth=1
+          base_ver=$(git -C filters show "origin/${{ github.base_ref }}:lists/darklist.txt" | sed -n 's/^! Version: //p' | head -1)
+          head_ver=$(sed -n 's/^! Version: //p' filters/lists/darklist.txt | head -1)
+          if [ -z "$base_ver" ] || [ -z "$head_ver" ]; then
+            echo "Missing ! Version: in base or PR"
+            exit 1
+          fi
+          if [ "$head_ver" -le "$base_ver" ]; then
+            echo "Version must increase: base=$base_ver PR=$head_ver"
+            exit 1
+          fi

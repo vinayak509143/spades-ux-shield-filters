@@ -15,7 +15,13 @@ Community-maintained filter lists for [Spades UX-Shield](https://github.com/vina
 
 ## How to Contribute
 
-Use **Report broken page** in the extension popup, or open a [breakage issue](https://github.com/vinayak509143/spades-ux-shield-filters/issues/new?template=breakage.yml).
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the full checklist.
+
+| Action | Link |
+|--------|------|
+| Request a new hide rule | [rule-request issue](https://github.com/vinayak509143/spades-ux-shield-filters/issues/new?template=rule-request.yml) |
+| Report breakage (checkout/login broke) | [breakage issue](https://github.com/vinayak509143/spades-ux-shield-filters/issues/new?template=breakage.yml) or **Report broken page** in the extension popup |
+| Propose a rule yourself | PR to `lists/darklist.txt` (CI validates syntax + version bump) |
 
 Do not submit rules targeting checkouts, payment gateways, or authentication screens. These will be immediately rejected to prevent accidental transaction breakage.
 

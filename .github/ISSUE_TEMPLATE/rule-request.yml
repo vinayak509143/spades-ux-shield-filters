@@ -1,0 +1,48 @@
+name: Request a darklist rule
+description: Ask to hide a dark pattern on a specific site (cosmetic / procedural rule)
+title: "[rule] "
+labels:
+  - rule-request
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Request a line in **`lists/darklist.txt`**. Maintainers will add hostname-scoped selectors after review.
+        For extension bugs or **breakage**, use **Report broken page** or the **Broken page** template instead.
+  - type: input
+    id: site
+    attributes:
+      label: Site (hostname)
+      description: e.g. `www.shop.example.com` or registrable domain if the whole site shares the widget
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Example page URL (no query tokens)
+      description: Product or page where the nag appears
+    validations:
+      required: true
+  - type: textarea
+    id: hide
+    attributes:
+      label: What should be hidden?
+      description: Describe the UI (countdown, cookie wall, newsletter popup). Optional CSS selector from DevTools.
+    validations:
+      required: true
+  - type: textarea
+    id: must_not
+    attributes:
+      label: What must keep working?
+      description: e.g. Add to cart, checkout, login, article body — pages you tested where hiding must not break anything
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This is not checkout, payment, or login-only UI
+          required: true
+        - label: I am not asking to block ads or network requests — cosmetic hide only
+          required: true
