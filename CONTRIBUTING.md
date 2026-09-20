@@ -46,6 +46,13 @@ If the widget uses a stable class prefix (`hurrify-`, `hextom-`, …), request a
 
 Theme-native markup without a prefix (e.g. generic `.product-count`) → hostname rules in **darklist** only when selectors are scoped and reviewed.
 
+## Amazon retail
+
+- **`amazon-retail##`** — PDP/social-proof IDs for all 23 retail marketplaces (engine sets `data-op-amz` on apex/`www` only).
+- **`amazon-en##`** — English `:has-text` deal badges (subset of locales).
+- **`amazon.in,www.amazon.in##`** — India-only homepage ATF (GWM, cashback, etc.).
+- **Banned:** `amazon.com##` or any rule that would match `aws.amazon.com` via hostname suffixes.
+
 ## Licenses
 
 Original lines in `darklist.txt` are licensed with this repository. Do not paste full EasyList/AdGuard blobs here.
