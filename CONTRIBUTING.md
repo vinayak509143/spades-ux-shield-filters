@@ -55,4 +55,4 @@ Theme-native markup without a prefix (e.g. generic `.product-count`) → hostnam
 
 ## Licenses
 
-Original lines in `darklist.txt` are licensed with this repository. Do not paste full EasyList/AdGuard blobs here.
+Original lines in `lists/darklist.txt` are licensed under [GPL-3.0-or-later](LICENSE). By submitting a pull request, you license your contributed rules under the same terms. Third-party extracts keep upstream terms per [ATTRIBUTION.md](ATTRIBUTION.md). Do not paste full EasyList/AdGuard blobs here.

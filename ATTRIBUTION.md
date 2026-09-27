@@ -11,7 +11,7 @@ The engine’s `npm run update-filters` (`scripts/fetch-third-party.mjs` in [spa
 - **Maintainer:** Ryan “Fanboy” and EasyList contributors  
 - **Source:** [https://secure.fanboy.co.nz/fanboy-annoyance.txt](https://secure.fanboy.co.nz/fanboy-annoyance.txt)  
 - **Project:** [https://easylist.to/](https://easylist.to/)  
-- **License:** GNU GPL v3 **and** Creative Commons Attribution-ShareAlike 3.0 Unported ([CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/))  
+- **License:** GNU GPL v3 or Creative Commons Attribution-ShareAlike 3.0 Unported ([CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)), at your option  
 - **GPL text:** [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html)
 
 EasyList-family lists require **attribution** and **share-alike** when you redistribute derived filter text. Shipping imported Fanboy/EasyList cosmetics in this repo is that redistribution.
@@ -33,6 +33,6 @@ The extract also **drops** generic (`##` with no host), HTML filters (`##^`), sn
 
 ## This list repo (not the extract)
 
-Original rules authored in `lists/darklist.txt` are intended to be licensed with this repository. **MIT (or any engine license) does not replace GPL/CC-BY-SA on imported third-party cosmetics.** Combined distributions that include the extract must honor upstream terms (attribution, share-alike / GPL as applicable).
+Original rules authored in `lists/darklist.txt` are licensed under [GPL-3.0-or-later](LICENSE). **MIT (or any engine license) does not replace GPL/CC-BY-SA on imported third-party cosmetics.** Combined distributions that include the extract must honor upstream terms (attribution, share-alike / GPL as applicable).
 
 Engine source: [spades-ux-shield](https://github.com/vinayak509143/spades-ux-shield) — see that repo’s `ATTRIBUTION.md` and `CONTRIBUTING.md`.
