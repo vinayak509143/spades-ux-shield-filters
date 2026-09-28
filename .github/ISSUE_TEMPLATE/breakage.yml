@@ -1,6 +1,6 @@
-name: Broken page
-description: Report a site where Spades UX-Shield breaks legitimate functionality
-title: "[breakage] "
+name: Dark pattern or broken page
+description: Report a dark pattern that is still visible, or a page the extension breaks
+title: "[dark pattern / broken page] "
 labels:
   - breakage
 body:
@@ -8,7 +8,7 @@ body:
     attributes:
       value: |
         Thanks for helping improve Spades UX-Shield. **Do not** paste full URLs with query strings, tokens, or personal data.
-        Fields below are pre-filled when you use **Report broken page** in the extension popup.
+        Fields below are pre-filled when you use **Report Dark Pattern & Broken Page** in the extension popup.
   - type: input
     id: site
     attributes:
@@ -30,10 +30,19 @@ body:
     attributes:
       label: Matched rule IDs (FNV-1a)
       description: Comma-separated rule hashes recorded for the tab
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What are you reporting?
+      options:
+        - Dark pattern still visible
+        - Something legitimate broke
+    validations:
+      required: true
   - type: textarea
     id: description
     attributes:
-      label: What broke?
-      description: Checkout, login, scroll lock, payment, etc.
+      label: What should we look at?
+      description: A dark pattern that is still visible, or what the extension broke (checkout, login, scroll, payment).
     validations:
       required: true

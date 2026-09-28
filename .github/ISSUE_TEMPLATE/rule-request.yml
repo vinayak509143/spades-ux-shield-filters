@@ -8,7 +8,7 @@ body:
     attributes:
       value: |
         Request a line in **`lists/darklist.txt`**. Maintainers will add hostname-scoped selectors after review.
-        For extension bugs or **breakage**, use **Report broken page** or the **Broken page** template instead.
+        For a dark pattern that is still visible, or a page the extension broke, use **Report Dark Pattern & Broken Page** or the **Dark pattern or broken page** template instead.
   - type: input
     id: site
     attributes:

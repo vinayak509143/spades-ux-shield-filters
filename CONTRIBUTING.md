@@ -7,10 +7,10 @@ Rules live in **`lists/darklist.txt`**. The [Spades UX-Shield](https://github.co
 | Path | When |
 |------|------|
 | **[Request a rule](https://github.com/vinayak509143/spades-ux-shield-filters/issues/new?template=rule-request.yml)** | You want something hidden but don’t want to write filter syntax. |
-| **[Report breakage](https://github.com/vinayak509143/spades-ux-shield-filters/issues/new?template=breakage.yml)** | The extension broke checkout, login, payment, or something legitimate. |
+| **[Report a dark pattern or breakage](https://github.com/vinayak509143/spades-ux-shield-filters/issues/new?template=breakage.yml)** | A dark pattern is still visible, or the extension broke checkout, login, payment, or something legitimate. |
 | **Pull request** | You can add a tested `host##selector` line yourself. |
 
-Extension popup **Report broken page** opens the breakage template with site/path/version prefilled.
+Extension popup **Report Dark Pattern & Broken Page** opens that template with site/path/version prefilled.
 
 ## Pull request checklist
 

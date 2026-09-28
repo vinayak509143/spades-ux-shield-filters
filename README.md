@@ -20,7 +20,7 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the full checklist.
 | Action | Link |
 |--------|------|
 | Request a new hide rule | [rule-request issue](https://github.com/vinayak509143/spades-ux-shield-filters/issues/new?template=rule-request.yml) |
-| Report breakage (checkout/login broke) | [breakage issue](https://github.com/vinayak509143/spades-ux-shield-filters/issues/new?template=breakage.yml) or **Report broken page** in the extension popup |
+| Report a dark pattern or a broken page | [report issue](https://github.com/vinayak509143/spades-ux-shield-filters/issues/new?template=breakage.yml) or **Report Dark Pattern & Broken Page** in the extension popup |
 | Propose a rule yourself | PR to `lists/darklist.txt` (CI validates syntax + version bump) |
 
 Do not submit rules targeting checkouts, payment gateways, or authentication screens. These will be immediately rejected to prevent accidental transaction breakage.
