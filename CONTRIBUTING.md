@@ -1,6 +1,6 @@
 # Contributing to Spades Darklist
 
-Rules live in **`lists/darklist.txt`**. The extension syncs this file from jsDelivr (~twice daily) for **static CSS** rules only. **Procedural** lines (`:has-text`, `:replace-text`, etc.) ship in the Chrome extension build until the engine loads synced procedural rules — see [RULE_SHIPPING.md](https://github.com/vinayak509143/spades-ux-shield/blob/main/docs/RULE_SHIPPING.md). Engine/parser changes belong in the **engine** repo, not here.
+Rules live in **`lists/darklist.txt`**. From extension **1.0.8** onward, the extension syncs this file from jsDelivr (~twice daily) for both static CSS and procedural lines (`:has-text`, `:replace-text`). Bump `! Version:` on every change; that is what makes installed copies prefer the synced list. Users on an older store build still run the procedural rules packaged with that build. See [RULE_SHIPPING.md](https://github.com/vinayak509143/spades-ux-shield/blob/main/docs/RULE_SHIPPING.md). Engine/parser changes belong in the **engine** repo, not here.
 
 **Community / outreach:** [COMMUNITY.md on the engine repo](https://github.com/vinayak509143/spades-ux-shield/blob/main/docs/COMMUNITY.md).
 
