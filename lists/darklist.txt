@@ -1,5 +1,5 @@
 ! Title: Spades Darklist
-! Version: 202609280142
+! Version: 202610012315
 scam-shop.example.com##.hurry-up-timer
 generic-ecommerce.com##.urgency-banner:has-text(/only \d+ left in stock/i)
 sneaky-news.example.com##button:has-text("I hate saving money")
@@ -42,19 +42,47 @@ amazon-retail###dealBadge_feature_div
 amazon-en##.a-badge:has-text(/limited time deal/i)
 amazon-en##.a-badge:has-text(/ends in/i)
 
-! Flipkart — www only (audit docs/flipkart-audit.md); SERP scarcity chips, not Bank Offer / price labels
+! Flipkart — www only (audit docs/flipkart-audit.md).
+! The old scarcity chip used a hashed class (HZ0E6r) and was removed. No Flipkart rule until a non-hashed selector is proven.
 ! Keep: price, seller, Add to cart / Buy now, real variant stock, cart & checkout
-www.flipkart.com##div.HZ0E6r.Rm9_cy:has-text(/^Only (few|\d+ left)/i)
 
-! Booking.com — www only (audit docs/booking-audit.md). Property room-table scarcity line, not the price cell or Reserve.
-! SERP "We have N left at this price" is hashed (cc87802d18) — unhandled. Do not hide banner-neutral or sign-in promos.
+! Booking.com — www only (audit docs/booking-audit.md).
+! Property room table: stable BUI list row. SERP chip has no class of its own that survives a deploy;
+! hide the exact "We have N left at this price" node inside recommended-units only (not the unit card or price).
 www.booking.com##li.bui-list__item.bui-text--color-destructive-dark:has-text(/we have \d+ left/i)
+www.booking.com##[data-testid="recommended-units"] div:has-text(/^\s*We have \d+ left at this price\s*$/i)
 
-! Agoda — www only (audit docs/agoda-audit.md). 24h booking badge, demand banner, sold-out hurry line.
-! Keep: fpc-cor-price (crossed price explanation), Sign in, room price, book/select.
-www.agoda.com##[data-selenium="ssr-property-card-booking-last-24h"]
-www.agoda.com##article.UserEngagement--demand
-www.agoda.com##[data-selenium="hurry-up-sold-out-message"]
+! Agoda — www.agoda.com + www.agoda.co.in (audit docs/agoda-audit.md).
+! Live SERP (2026-09-28 New Delhi): badges are data-element-name / data-testid / data-badge-id.
+! data-selenium on these nodes is empty — do not rely on it. Keep both spellings where older builds used selenium.
+! Keep: fpc-cor-price, data-badge-id other than today-booking/lbk, Sign in, room price, book/select.
+www.agoda.com,www.agoda.co.in##[data-element-name="ssr-property-card-today-book"]
+www.agoda.com,www.agoda.co.in##[data-testid="property-badge-today-booking-container"]
+www.agoda.com,www.agoda.co.in##[data-badge-id="today-booking"]
+www.agoda.com,www.agoda.co.in##[data-badge-id="lbk"]
+www.agoda.com,www.agoda.co.in##[data-element-name="mob-ssr-last-booked-badge"]
+www.agoda.com,www.agoda.co.in##[data-testid="property-badge-lbk-badge-container"]
+www.agoda.com,www.agoda.co.in##[data-element-name="PropertyCardBookingUrgency"]
+www.agoda.com,www.agoda.co.in##[data-testid="PropertyCardBookingUrgency"]
+www.agoda.com,www.agoda.co.in##[data-element-name="hero-banner-container"]
+www.agoda.com,www.agoda.co.in##[data-element-name="hurry-up-sold-out-message"]
+www.agoda.com,www.agoda.co.in##[data-selenium="PropertyCardBookingUrgency"]
+www.agoda.com,www.agoda.co.in##[data-selenium="ssr-property-card-booking-last-24h"]
+www.agoda.com,www.agoda.co.in##[data-selenium="property-badge-today-booking-container"]
+www.agoda.com,www.agoda.co.in##[data-selenium="ssr-property-card-today-book"]
+www.agoda.com,www.agoda.co.in##[data-selenium="mob-ssr-last-booked-badge"]
+www.agoda.com,www.agoda.co.in##[data-selenium="ssr-last-booked-badge"]
+www.agoda.com,www.agoda.co.in##[data-selenium="property-badge-lbk-badge-container"]
+www.agoda.com,www.agoda.co.in##[data-selenium="hero-banner-container"]
+www.agoda.com,www.agoda.co.in##[data-selenium="hurry-up-sold-out-message"]
+www.agoda.com,www.agoda.co.in##article.UserEngagement--demand
+www.agoda.com,www.agoda.co.in##h5:has-text(/^Hurry!.*fully booked!/i):not(:has(button, a, input, select, textarea, [role="button"]))
+www.agoda.com,www.agoda.co.in##p.kite-js-Typography:has-text(/in high demand on your selected dates/i)
+www.agoda.com,www.agoda.co.in##[data-testid="room-badge-last_booked_x_hours_ago"]
+www.agoda.com,www.agoda.co.in##[data-testid="room-offer"] span:not(:has(button, a, input, select, textarea, [role="button"])):has-text(/^\s*Last booked \d+\s+(?:minutes?|hours?|hrs?)\s+ago\s*$/i)
+www.agoda.com,www.agoda.co.in##[data-element-name="room-grid-urgency-message"]
+www.agoda.com,www.agoda.co.in###roomGridContent span:has-text(/^Limited availability$/i)
+www.agoda.com,www.agoda.co.in###roomGridContent span:has-text(/^Last \d+ rooms!$/i)
 
 ! Expedia Group — one host per line (separate audits). UITK listing scarcity on SERP; PDP often bot-walled in audit.
 ! Vrbo: percent-unavailable banner only — generic results-header-message slot — unhandled (docs/vrbo-audit.md).
@@ -64,18 +92,14 @@ in.hotels.com##div.uitk-text.uitk-type-end:has-text(/we have \d+ left at this pr
 www.travelocity.com##div.uitk-text.uitk-type-end:has-text(/we have \d+ left at this price/i)
 
 ! MLO Shoes (mloshoes.com) — manipulative Shopify theme widgets; shopping flow untouched
-! Hide: fake countdowns (header, cart, announcement, sticky promo ribbon), inflated "compare" MSRP, every-SKU "Best Seller"
-! Keep: hero sale copy, current prices, add-to-cart, cart/checkout, free-shipping announcement slide
+! Hide: fake countdowns (header, cart, announcement, sticky promo ribbon), every-SKU "Best Seller"
+! Keep: hero sale copy, current prices, crossed-out and compare prices, add-to-cart, cart/checkout, free-shipping announcement slide
 ! Do not copy these selectors into cosmetic-vendors.css — they are theme-native, not app prefixes.
 mloshoes.com,www.mloshoes.com###header-timer-box
 mloshoes.com,www.mloshoes.com###cart-timer-box
 mloshoes.com,www.mloshoes.com##.promo-price-card__ribbon-right
 mloshoes.com,www.mloshoes.com##.promo-countdown
 mloshoes.com,www.mloshoes.com##.announcement__slide:has-text(/ends in/i)
-mloshoes.com,www.mloshoes.com##.promo-price-card__compare
-mloshoes.com,www.mloshoes.com##.js-promo-compare
-mloshoes.com,www.mloshoes.com##.product__price--strike
-mloshoes.com,www.mloshoes.com##.price.sale s
 mloshoes.com,www.mloshoes.com##.badge-box.custom-box:has-text(/best seller/i)
 
 ! Hurrier demo (Anvanto theme) — fake stock + delivery countdown + visitor count; not hurrify- app prefixes
@@ -125,12 +149,26 @@ euqs.shein.com##span.tags-text:has-text(/(sold recently|returning customers|(sal
 ! or a rank line ("#1 BEST-SELLING ITEM", "#1 TOP RATED", "#3 MOST REPURCHASED BRAND ITEM",
 ! including "in {category}"). Logged-in home, best-sellers, and a socks PDP, 2026-09-26.
 ! Urgency buy labels on span[data-type="0"]: relabel, do not hide. "Add now! Almost out!" → Add to cart;
-! "Buy now! Almost out!" / "BUY NOW! LAST N!" → Buy now. Plain "Buy now!" / "Add now!" alone stay.
-! Keep: price, percent off, ratings, "Best-Selling Items" heading, delivery estimates,
-! free shipping, "Low stock items alerts", and "Pay $N today".
-www.temu.com##span[class]:has-text(/^\s*(?:only\s+\d+\s+left|\d+(?:\.\d+)?[kK]?\+?\s*sold|limited stock|almost\s+sold\s+out!?|almost out!?|last day!?|ends\s+in!?|\d{1,2}:\d{2}(?::\d{2})?|#?\d*\s*(?:best-selling(?:\s+brand)?\s+item|top rated|most repurchased(?:\s+brand)?\s+item)(?:\s*in\s+.+)?)\s*$/i)
-www.temu.com##div[class]:has-text(/^\s*(?:only\s+\d+\s+left|\d+(?:\.\d+)?[kK]?\+?\s*sold|limited stock|almost\s+sold\s+out!?|almost out!?|last day!?|ends\s+in!?|\d{1,2}:\d{2}(?::\d{2})?|#?\d*\s*(?:best-selling(?:\s+brand)?\s+item|top rated|most repurchased(?:\s+brand)?\s+item)(?:\s*in\s+.+)?)\s*$/i)
+! "ADD THE LAST N!" on span[data-type="0"] or span[role="button"] (hashed class) → Add to cart.
+! Plain "Buy now!" / "Add now!" alone stay. Clock cells are hashed <i> digits; hide the wrapper
+! whose whole text is the timer (digits and colons, optional "Ends in"), not the hash class.
+! Keep: price, percent off, ratings, "Best-Selling Items" heading, free shipping,
+! "Low stock items alerts", and "Pay $N today".
+! The deal-timer line "Fastest delivery in N business days" (white, after the clock is opened) is hidden.
+! A different shipping sentence stays.
+! Classless orange chips are span[data-type="0"] (class attribute absent or empty). span[class] does not see those.
+www.temu.com##span[class]:has-text(/^\s*(?:only\s+\d+\s+left|\d+(?:\.\d+)?[kK]?\+?\s*sold|limited stock|almost\s+sold\s+out!?|almost out!?|last day!?|ends\s+in!?|\d{1,2}:\d{2}(?::\d{2})?|#?\d*\s*(?:best-selling(?:\s+brand)?\s+item|top rated|most repurchased(?:\s+brand)?\s+item)(?:\s*in\s+.+)?|(?:\d{1,2}\s*:\s*){1,5}\d{1,2}(?:\s+ends\s+in!?)?)\s*$/i)
+www.temu.com##div[class]:has-text(/^\s*(?:only\s+\d+\s+left|\d+(?:\.\d+)?[kK]?\+?\s*sold|limited stock|almost\s+sold\s+out!?|almost out!?|last day!?|ends\s+in!?|\d{1,2}:\d{2}(?::\d{2})?|#?\d*\s*(?:best-selling(?:\s+brand)?\s+item|top rated|most repurchased(?:\s+brand)?\s+item)(?:\s*in\s+.+)?|(?:\d{1,2}\s*:\s*){1,5}\d{1,2}(?:\s+ends\s+in!?)?)\s*$/i)
+www.temu.com##span[data-type="0"]:has-text(/^\s*(?:only\s+\d+\s+left|\d+(?:\.\d+)?[kK]?\+?\s*sold|limited stock|almost\s+sold\s+out!?|almost out!?|last day!?|ends\s+in!?|\d{1,2}:\d{2}(?::\d{2})?|#?\d*\s*(?:best-selling(?:\s+brand)?\s+item|top rated|most repurchased(?:\s+brand)?\s+item)(?:\s*in\s+.+)?|(?:\d{1,2}\s*:\s*){1,5}\d{1,2}(?:\s+ends\s+in!?)?)\s*$/i)
+www.temu.com##span[data-type="0"]:has-text(/^\s*fastest delivery in \d+ business days\s*$/i)
 www.temu.com##span[data-type="0"]:has-text(/^\s*add now!\s*almost out!?\s*$/i):replace-text("Add to cart")
 www.temu.com##span[data-type="0"]:has-text(/^\s*buy now!\s*almost out!?\s*$/i):replace-text("Buy now")
 www.temu.com##span[data-type="0"]:has-text(/^\s*buy now!\s*last\s+\d+!?\s*$/i):replace-text("Buy now")
+www.temu.com##span[data-type="0"]:has-text(/^\s*add the last\s+\d+!?\s*$/i):replace-text("Add to cart")
+www.temu.com##span[role="button"]:has-text(/^\s*add the last\s+\d+!?\s*$/i):replace-text("Add to cart")
+www.temu.com##span[class]:has-text(/^\s*add the last\s+\d+!?\s*$/i):replace-text("Add to cart")
+
+! ThredUp — PDP predictive popularity row (flame icon + sell-soon copy). docs/thredup-audit.md
+! Keep: prices, condition, Add to cart, shipping policy, promo banners (FIRST50), cart/checkout.
+www.thredup.com##div.body-copy-sm:has(> img[alt="Flame"]):has-text(/this item is popular.*likely to sell soon/i):not(:has(button, a, input, select, textarea, [role="button"])):matches-path(/^\/product\//)
 
