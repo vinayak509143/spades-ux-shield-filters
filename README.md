@@ -2,6 +2,8 @@
 
 Community-maintained filter lists for [Spades UX-Shield](https://github.com/vinayak509143/spades-ux-shield).
 
+Install the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/spades-ux-shield/dmchnhnkofleiokmffmkigfnoeodpemf) or [Firefox Add-ons](https://addons.mozilla.org/en-GB/firefox/addon/spades-ux-shield/) (version 1.0.8).
+
 ## Lists
 
 | File | Description |
